@@ -18,10 +18,10 @@ function App() {
   const { jobs, loading, error } = state;
   const [jobsCreated, setJobCreated] = useState(false)
   
-  const addJob = (jobName, jobID) => {
-    const response = axios.post("http://localhost:8080/jobs",{
-      jobID,
-      jobName
+  const addJob = async (jobName, jobID) => {
+    const response = await axios.post("http://localhost:8080/jobs",{
+      id:jobID,
+      name:jobName
     })
     if(response.status == 200){
       setJobCreated(true);

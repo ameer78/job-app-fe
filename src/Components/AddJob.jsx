@@ -17,7 +17,7 @@ const AddJob = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateFields()) {
-      props.AddJob(jobName, jobId);
+      props.addJob(jobName, jobId);
     }
   };
   return (
