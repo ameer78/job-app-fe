@@ -12,17 +12,20 @@ const AddJob = (props) => {
     }
     return true;
   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateFields()) {
       props.addJob(jobName, jobId);
     }
   };
+  console.log(props.jobCreated);
   return (
     <div>
-      {props.jobsCreated && (
+      {props.jobCreated && (
         <Alert variant="success">Created Successfully</Alert>
+      )}
+      {props.err && (
+        <Alert variant="danger">Unable to create Job</Alert>
       )}
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="formBasicEmail">

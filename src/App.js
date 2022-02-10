@@ -17,17 +17,22 @@ function App() {
   const [state, dispatch] = useReducer(JobsReducer, initialState);
   const { jobs, loading, error } = state;
   const [jobCreated, setJobCreated] = useState(false)
+  const [jobCreatedErr, setJobCreatedErr] = useState(false)
   
   const addJob = async (jobName, jobID) => {
-    const response = await axios.post("http://localhost:8080/jobs",{
-      id:jobID,
-      name:jobName
-    })
-    if(response.status == 200){
-      setJobCreated(true);
-      getJobs();
-    }else{
+    try{
+      const response = await axios.post("http://localhost:8080/jobs",{
+        id:jobID,
+        name:jobName
+      })
+      if(response.status == 200){
+        setJobCreated(true);
+        setJobCreatedErr(false);
+        getJobs();
+      }
+    }catch(err){
       setJobCreated(false);
+      setJobCreatedErr(true);
     }
   }
 
@@ -49,7 +54,7 @@ function App() {
   return (
     <div className="App">
       <JobList jobs={jobs} />
-      <AddJob addJob={addJob} jobCreated={jobCreated} />
+      <AddJob addJob={addJob} err={jobCreatedErr} jobCreated={jobCreated} />
     </div>
   );
 }
