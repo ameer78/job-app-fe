@@ -6,7 +6,6 @@ import Alert from "react-bootstrap/Alert";
 const AddJob = (props) => {
   const [jobName, setJobName] = React.useState("");
   const [jobId, setJobId] = React.useState("");
-  const [requestError, setRequestError] = React.useState(true);
   const validateFields = () => {
     if (!jobId.trim() || !jobName.trim()) {
       return false;
@@ -22,8 +21,8 @@ const AddJob = (props) => {
   };
   return (
     <div>
-      {!requestError && (
-        <Alert variant="danger">Please Fill All required Field!</Alert>
+      {props.jobsCreated && (
+        <Alert variant="success">Created Successfully</Alert>
       )}
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="formBasicEmail">

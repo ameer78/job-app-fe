@@ -6,11 +6,9 @@ const JobList = (props) => {
       <h1>Job List</h1>
       <div>
         <ListGroup>
-          <ListGroup.Item>Cras justo odio</ListGroup.Item>
-          <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
-          <ListGroup.Item>Morbi leo risus</ListGroup.Item>
-          <ListGroup.Item>Porta ac consectetur ac</ListGroup.Item>
-          <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
+         {props.jobs && props.jobs.length > 0 && props.jobs.map(item => 
+           <ListGroup.Item Key={item.id} >{item.name}</ListGroup.Item>
+         )}
         </ListGroup>
       </div>
     </div>

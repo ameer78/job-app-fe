@@ -17,7 +17,7 @@ export const JobsReducer = (state, action) => {
             return {
                 ...state,
                 loading: false,
-                jobs: action.data,
+                jobs: action.data.data.jobs,
             };
         }
         case ACTIONS.ERROR: {

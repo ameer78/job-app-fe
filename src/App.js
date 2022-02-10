@@ -16,7 +16,7 @@ const initialState = {
 function App() {
   const [state, dispatch] = useReducer(JobsReducer, initialState);
   const { jobs, loading, error } = state;
-  const [jobsCreated, setJobCreated] = useState(false)
+  const [jobCreated, setJobCreated] = useState(false)
   
   const addJob = async (jobName, jobID) => {
     const response = await axios.post("http://localhost:8080/jobs",{
@@ -43,15 +43,13 @@ function App() {
   useEffect(() => {
     dispatch({ type: ACTIONS.CALL_API });
     getJobs();
-
-
   }, []);
 
 
   return (
     <div className="App">
       <JobList jobs={jobs} />
-      <AddJob addJob={addJob} />
+      <AddJob addJob={addJob} jobCreated={jobCreated} />
     </div>
   );
 }
